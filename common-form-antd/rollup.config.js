@@ -31,11 +31,13 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       terser(),
     ],
+    external: [/node_modules/],
   },
   {
     input: "dist/esm/types/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     external: [/\.css$/],
     plugins: [dts()],
+    external: [/node_modules/],
   },
 ];

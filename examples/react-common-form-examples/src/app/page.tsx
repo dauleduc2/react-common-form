@@ -5,7 +5,8 @@ import {
   TextField,
   reactHookFormAdapter,
 } from "react-common-form";
-import { AntdComponents, Button } from "common-form-antd";
+import { AntdComponents } from "common-form-antd";
+import { Button } from "antd";
 type TestForm = {
   name: string;
   age: number;
@@ -33,10 +34,10 @@ export default function Home() {
           }}
           onSubmit={methods.handleSubmit(onSubmit)}
         >
-          <Button type="error" onClick={() => {}}>
-            hehe
-          </Button>
           <TextField name="abc" />
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
         </form>
       </FormProvider>
     </main>
