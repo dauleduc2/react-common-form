@@ -11,7 +11,7 @@ export type ErrorState<T extends FormValues> = Partial<
 export type FormMethods<
   T extends FormValues = any,
   IErrorState = any,
-  ErrorField = any,
+  ErrorField = any
 > = {
   getValues: () => T;
   getValue: <K extends keyof T>(name: K) => T[K];

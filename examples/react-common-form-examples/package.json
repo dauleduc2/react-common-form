@@ -11,10 +11,10 @@
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
     "antd": "^5.18.0",
+    "common-form-antd": "../../common-form-antd",
     "next": "14.2.3",
     "react": "^18",
     "react-common-form": "../../lib",
-    "common-form-antd": "../../common-form-antd",
     "react-dom": "^18",
     "react-hook-form": "^7.51.5"
   },

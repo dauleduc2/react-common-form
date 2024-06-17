@@ -1,7 +1,8 @@
 import { Select } from "antd";
 import { FC, PropsWithChildren } from "react";
+import { FieldEvents } from "react-common-form-types";
 
-export type SelectFieldProps = PropsWithChildren<{}>;
+export type SelectFieldProps = FieldEvents & {};
 
 const SelectField: FC<SelectFieldProps> = ({}) => {
   return (
