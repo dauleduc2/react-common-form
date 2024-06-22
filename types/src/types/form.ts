@@ -1,12 +1,20 @@
-import { FormComponents } from "react-common-form-types";
+import { FormComponents, SelectFieldProps, TextFieldProps } from "./components";
 import { SupportedUILibrary } from "./config";
 
-export type FormValues<T extends Record<string, unknown> = any> = T;
-
+export type FormValues<T extends Record<string, AvailableFormValues> = any> = T;
 export type FormError = string | undefined;
 export type ErrorState<T extends FormValues> = Partial<
   Record<keyof T, FormError>
 >;
+
+export type AvailableFormValues =
+  | string
+  | number
+  | boolean
+  | string[]
+  | number[]
+  | boolean[]
+  | undefined;
 
 export type FormMethods<
   T extends FormValues = any,
@@ -22,9 +30,15 @@ export type FormMethods<
   clearErrors: () => void;
   reset: () => void;
 };
-
-export type FormContext<T extends FormValues = any> = {
+export type FormContext<
+  T extends FormValues = any,
+  TProps = any,
+  SProps = any
+> = {
   methods: FormMethods<T>;
   ui: SupportedUILibrary;
-  components: FormComponents;
+  components: FormComponents<
+    TextFieldProps<T, TProps>,
+    SelectFieldProps<T, SProps>
+  >;
 };

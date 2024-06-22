@@ -1,5 +1,5 @@
+import { FormMethods } from "react-common-form-types";
 import { FieldErrors, FieldValues, Path, UseFormReturn } from "react-hook-form";
-import { FormMethods } from "../types";
 
 //TODO: create a nested PathInto and convert it to name of react-hook-form
 const nameParser = <T extends FieldValues>(name: keyof T): Path<T> => {

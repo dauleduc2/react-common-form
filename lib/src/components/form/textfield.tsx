@@ -1,19 +1,20 @@
-import { BaseFieldProps } from "../../types/field";
-import { FormValues } from "../../types";
+import type { FormValues, TextFieldProps } from "react-common-form-types";
 import { useFormContext } from "./context";
-import { AvailableFormValues } from "react-common-form-types";
 
-export type TextFieldProps<T extends FormValues> = BaseFieldProps<T> & {};
-
-export const TextField = <T extends FormValues>({
+export const TextField = <T extends FormValues, K>({
   name,
-}: TextFieldProps<T>) => {
+  onChange,
+  extraProps,
+}: TextFieldProps<T, K, true>) => {
   const { components, methods } = useFormContext<T>();
-  const Component = components.TextField;
+  const Component = components.TextField as React.FC<
+    TextFieldProps<T, K, false>
+  >;
 
-  const onChange = (value: AvailableFormValues) => {
-    methods.setValue(name, value as T[keyof T]);
+  const _onChange = (value: T[keyof T]) => {
+    methods.setValue(name, value);
+    onChange?.(value);
   };
 
-  return <Component onChange={onChange} />;
+  return <Component name={name} {...extraProps} onChange={_onChange} />;
 };

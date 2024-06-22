@@ -1,16 +1,14 @@
 import { Input, InputProps } from "antd";
-import { FC } from "react";
-import { FieldEvents } from "react-common-form-types";
+import { FormValues, TextFieldProps } from "react-common-form-types";
 
-export type TextFieldProps = FieldEvents &
-  Omit<InputProps, "onChange" | "onBlur"> & {};
-
-const TextField: FC<TextFieldProps> = ({ onChange, ...rest }) => {
+const TextField = <T extends FormValues>({
+  onChange,
+  extraProps,
+}: TextFieldProps<T, InputProps, true>) => {
   return (
     <Input
-      placeholder="Basic usage"
-      onChange={(e) => onChange(e.target.value)}
-      {...rest}
+      onChange={(e) => onChange?.(e.target.value as T[keyof T])}
+      {...extraProps}
     />
   );
 };

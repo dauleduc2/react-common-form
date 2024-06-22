@@ -1,13 +1,15 @@
-import { Select } from "antd";
-import { FC, PropsWithChildren } from "react";
-import { FieldEvents } from "react-common-form-types";
+import { Select, SelectProps } from "antd";
+import { FormValues, SelectFieldProps } from "react-common-form-types";
 
-export type SelectFieldProps = FieldEvents & {};
-
-const SelectField: FC<SelectFieldProps> = ({}) => {
+const SelectField = <T extends FormValues>({
+  name,
+  extraProps,
+  onChange,
+}: SelectFieldProps<T, SelectProps, true>) => {
   return (
     <Select
       placeholder="Basic usage"
+      onChange={(value) => onChange?.(value as T[keyof T])}
       options={[
         {
           label: "",
@@ -18,6 +20,7 @@ const SelectField: FC<SelectFieldProps> = ({}) => {
           value: "option2",
         },
       ]}
+      {...extraProps}
     />
   );
 };

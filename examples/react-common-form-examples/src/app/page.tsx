@@ -1,10 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
-import {
-  FormProvider,
-  TextField,
-  reactHookFormAdapter,
-} from "react-common-form";
+import { FormProvider, reactHookFormAdapter } from "react-common-form";
 import { AntdComponents } from "common-form-antd";
 import { Button } from "antd";
 type TestForm = {
@@ -20,25 +16,29 @@ export default function Home() {
   return (
     <main>
       <FormProvider<TestForm>
-        components={AntdComponents}
+        components={AntdComponents<TestForm>()}
         methods={reactHookFormAdapter(methods)}
         ui="antd"
       >
-        <form
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            maxWidth: "300px",
-            gap: "16px",
-            margin: "auto",
-          }}
-          onSubmit={methods.handleSubmit(onSubmit)}
-        >
-          <TextField name="abc" />
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </form>
+        {({ TextField, SelectField }) => {
+          return (
+            <form
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                maxWidth: "300px",
+                gap: "16px",
+                margin: "auto",
+              }}
+              onSubmit={methods.handleSubmit(onSubmit)}
+            >
+              <TextField name="name" />
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </form>
+          );
+        }}
       </FormProvider>
     </main>
   );
